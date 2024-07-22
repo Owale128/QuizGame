@@ -2,4 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
+body {
+    background: url('https://cdn.pixabay.com/photo/2020/06/06/22/40/terraforming-5268447_1280.jpg') no-repeat center center / cover ;
+}

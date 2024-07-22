@@ -44,12 +44,12 @@ const handleAnswer = (answer: number) => {
   }
 }
 
-if (!questions.length) return <div className="text-center mt-48 text-3xl">Loading...</div>
+if (!questions.length) return <div className="text-center text-7xl text-white min-h-screen pt-64">Loading...</div>
 
   return (
     <div className="flex min-h-screen flex-col items-center p-24 text-center">
 
-      <h1 className="font-bold text-3xl mb-2">Quiz</h1>
+      {/* <h1 className="font-bold text-3xl mb-2">Quiz</h1> */}
 
       <DisplayQuestions question={questions[currentQuestionIndex]} onAnswer={handleAnswer} handleQuit={handleQuit}/>
 

@@ -11,7 +11,7 @@ interface IQuestions {
 const DisplayQuestions = ({question, onAnswer, handleQuit}: IQuestions) => {
 
   return (
-    <div className="border-2 border-black rounded-2xl w-5/12 p-3 bg-gradient-to-br from-[#72a4cd] to-[#514899]">
+    <div className="border-2 border-black rounded-2xl w-5/12 p-3 bg-gradient-to-br from-[#72a4cd] to-[#514899] mt-14">
       
       <h2 className="font-bold mt-4 text-lg">{question.question}</h2>
       <ul className="mt-7">
