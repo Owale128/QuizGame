@@ -1,10 +1,10 @@
 import React from 'react'
 import { IQuestion } from '../model/Question'
-import { useRouter } from 'next/router';
+
 
 interface IQuestions {
   question: IQuestion;
-  onAnswer: (answer: string) => void;
+  onAnswer: (answer: number) => void;
   handleQuit: () => void
 }
 
@@ -16,7 +16,7 @@ const DisplayQuestions = ({question, onAnswer, handleQuit}: IQuestions) => {
       <h2 className="font-bold mt-4 text-lg">{question.question}</h2>
       <ul className="mt-7">
         {question.options.map((option, index) => (
-          <li className="border-2 border-black p-2 rounded-2xl cursor-pointer bg-black text-white w-8/12 mx-auto my-2 hover:bg-white hover:text-black transition ease-in duration-150" key={index} onClick={() => onAnswer(option)}>{option}</li>
+          <li className="border-2 border-black p-2 rounded-2xl cursor-pointer bg-black text-white w-8/12 mx-auto my-2 hover:bg-white hover:text-black transition ease-in duration-150" key={index} onClick={() => onAnswer(index)}>{option}</li>
         ))}
       </ul>
 

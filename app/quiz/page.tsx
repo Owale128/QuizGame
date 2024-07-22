@@ -13,6 +13,7 @@ const Quiz = () => {
 
   const handleQuit = () => {
     router.push('/')
+    alert('Are you sure?')
   }
 
   useEffect(() => {
@@ -21,24 +22,24 @@ const Quiz = () => {
     .then((data) => setQuestions(data))
   }, [])
 
-const handleAnswer = (answer: string) => {
-  if (answer === questions[currentQuestionIndex].answer){
-    setScore(score + 1)
-  }
+const handleAnswer = (answer: number) => {
+  const isCorrect = answer === questions[currentQuestionIndex].correctAnswer;
+  const newScore = isCorrect ? score + 1 : score
 
   const nextQuestionIndex = currentQuestionIndex + 1;
 
   if(nextQuestionIndex < questions.length) {
     setCurrentQuestionsIndex(nextQuestionIndex);
+    setScore(newScore)
   } else {
     const username = localStorage.getItem('username');
 
-    fetch('/api/result', {
+    fetch('/api/score', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json'},
-      body: JSON.stringify({ username, score })
+      body: JSON.stringify({ username, score: newScore })
     }).then(() => {
-      router.push('/result')
+      router.push('/score')
     })
   }
 }
