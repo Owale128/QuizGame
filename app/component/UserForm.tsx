@@ -9,7 +9,7 @@ interface IUserForm {
 const UserForm = ({username, setUserName, handleSubmit}: IUserForm) => {
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center mb-20 border-2 border-black rounded-2xl p-7 bg-gradient-to-br from-black via-[#aa3939] to-black">
+    <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center mb-20 border-2 border-black rounded-2xl p-8 bg-gradient-to-br from-black via-[#aa3939] to-black animate-flyIn">
     <input type="text"
     value={username}
     onChange={(e) => setUserName(e.target.value)}

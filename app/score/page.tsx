@@ -22,12 +22,18 @@ useEffect(() => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center border-2 rounded-2xl border-black w-3/12 mx-auto my-56 h-72 bg-gradient-to-br from-[#e3e2e2ec] to-[#242424db]">
+    <div className="flex flex-col items-center justify-center border-2 rounded-2xl border-black w-3/12 mx-auto my-56 h-72 bg-gradient-to-br from-[#e3e2e2ec] to-[#242424db] animate-fadeIn">
      
      <h1 className="font-bold text-3xl underline">Result</h1>
-      <p className="text-xl mb-2 mt-8"><span className="font-bold">Username:</span> {score.username}</p>
-      <p className="text-xl"><span className="font-bold">Score:</span> {score.score}</p>
+      <p className="text-xl text-white mb-2 mt-8"><span className="font-bold text-black">Username:</span> {score.username}</p>
+      <p className="text-xl text-white"><span className="font-bold text-black">Score:</span> {score.score}</p>
           <button className="border-2 border-black rounded p-1 mt-6 bg-black text-white hover:bg-red-700 transition ease-in duration-150" onClick={handleHomeBtn}>Home</button>
+          <button
+        className="border-2 border-black rounded p-1 mt-6 bg-black text-white hover:bg-white hover:text-black transition ease-in duration-150"
+        onClick={() => router.push('/highscores')}
+      >
+        View Top 5 High Scores
+      </button>
         
     </div>
   )
