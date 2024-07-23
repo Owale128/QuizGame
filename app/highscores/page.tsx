@@ -1,8 +1,14 @@
 'use client'
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
  const HighScores = () => {
     const [highScores, setHighScores] = useState<{ username: string; score: number;}[]>([]);
+    const router = useRouter();
+
+    const handleBackBtn = () => {
+      router.push('/score')
+    }
 
     useEffect(() => {
         fetch('/api/highscores')
@@ -32,6 +38,7 @@ import React, { useEffect, useState } from 'react'
           ))}
         </tbody>
       </table>
+      <button className="border-2 border-black rounded p-1 bg-black text-white hover:bg-white hover:text-black transition ease-in duration-150 mt-3" onClick={handleBackBtn}>Back</button>
     </div>
   )
 }

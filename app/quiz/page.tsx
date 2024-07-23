@@ -8,13 +8,10 @@ const Quiz = () => {
   const [questions, setQuestions] = useState<IQuestion[]>([])
   const [currentQuestionIndex, setCurrentQuestionsIndex] = useState(0);
   const [score, setScore] = useState(0);
-  
-  const router = useRouter();
+  const [timer, setTimer] = useState(30)
+  const [timerActive, setTimerActive] = useState(true)
 
-  const handleQuit = () => {
-    router.push('/')
-    alert('Are you sure?')
-  }
+  const router = useRouter();
 
   useEffect(() => {
     fetch('/api/questions')
@@ -22,18 +19,35 @@ const Quiz = () => {
     .then((data) => setQuestions(data))
   }, [])
 
+  useEffect(() => {
+    if (timerActive && timer > 0) {
+      const interval = setInterval(() =>{
+        setTimer(prev => prev - 1);
+      }, 1000);
+
+      return () => clearInterval(interval)
+
+    } else if (timer === 0) {
+      handleNextQuestion(false)
+    }
+  }, [timer, timerActive])
+
 const handleAnswer = (answer: number) => {
   const isCorrect = answer === questions[currentQuestionIndex].correctAnswer;
-  const newScore = isCorrect ? score + 1 : score
+  handleNextQuestion(isCorrect)
+  }
 
-  const nextQuestionIndex = currentQuestionIndex + 1;
-
-  if(nextQuestionIndex < questions.length) {
+  const handleNextQuestion = (isCorrect: boolean) => {
+    const newScore = isCorrect ? score + 1 : score
+    const nextQuestionIndex = currentQuestionIndex + 1;
+    if(nextQuestionIndex < questions.length) {
     setCurrentQuestionsIndex(nextQuestionIndex);
     setScore(newScore)
+    setTimer(30)
+    setTimerActive(true)
   } else {
     const username = localStorage.getItem('username');
-
+  
     fetch('/api/score', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json'},
@@ -48,10 +62,13 @@ if (!questions.length) return <div className="text-center text-7xl text-white mi
 
   return (
     <div className="flex min-h-screen flex-col items-center p-24 text-center">
+     
+      <DisplayQuestions 
+      question={questions[currentQuestionIndex]} 
+      onAnswer={handleAnswer} 
 
-      {/* <h1 className="font-bold text-3xl mb-2">Quiz</h1> */}
-
-      <DisplayQuestions question={questions[currentQuestionIndex]} onAnswer={handleAnswer} handleQuit={handleQuit}/>
+      timer={timer}
+      />
 
     </div>
   )

@@ -1,17 +1,25 @@
 import React from 'react'
 import { IQuestion } from '../model/Question'
-
+import { useRouter } from 'next/navigation';
 
 interface IQuestions {
   question: IQuestion;
   onAnswer: (answer: number) => void;
-  handleQuit: () => void
+  timer: number;
 }
 
-const DisplayQuestions = ({question, onAnswer, handleQuit}: IQuestions) => {
+const DisplayQuestions = ({question, onAnswer, timer}: IQuestions) => {
+
+  const router = useRouter();
+
+  const handleQuit = () => {
+    router.push('/')
+    alert('Are you sure?')
+  }
 
   return (
     <div className="border-2 border-black rounded-2xl w-5/12 p-3 bg-gradient-to-br from-[#72a4cd] to-[#514899] mt-14 animate-fadeIn">
+        <div>Timer: {timer}s</div>
       
       <h2 className="font-bold mt-4 text-lg">{question.question}</h2>
       <ul className="mt-7">
