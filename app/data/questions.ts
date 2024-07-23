@@ -71,9 +71,9 @@ export const questions = [
         correctAnswer: 1
     },
     {
-        question: "Vem vann mellan Kendrick Lamar och Drake?",
-        options: ["BBL Drizzy", "K.dot"],
-        correctAnswer: 1
+        question: "Vilket år började den första världskriget?",
+        options: ["1918", "1916", "1914", "1912"],
+        correctAnswer: 2
     },
 ]
 

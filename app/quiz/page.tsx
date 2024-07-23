@@ -66,10 +66,8 @@ if (!questions.length) return <div className="text-center text-7xl text-white mi
       <DisplayQuestions 
       question={questions[currentQuestionIndex]} 
       onAnswer={handleAnswer} 
-
       timer={timer}
       />
-
     </div>
   )
 }
