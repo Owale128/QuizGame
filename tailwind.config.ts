@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      width: {
+        'screen-90': '90vw',
+      },
+
       keyframes: {
 
         fadeIn: {

@@ -30,7 +30,7 @@ import React, { useEffect, useState } from 'react'
         </thead>
         <tbody>
           {highScores.map((player, index) => (
-           <tr key={index} className="border-b border-gray-200">
+            <tr key={index} className="border-b border-gray-200">
               <td className="p-4 text-lg text-white">{index + 1}</td>
               <td className="text-lg  text-white">{player.username}</td>
               <td className="text-lg  text-white">{player.score}</td>
