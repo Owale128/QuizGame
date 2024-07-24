@@ -58,7 +58,7 @@ const handleAnswer = (answer: number) => {
   }
 }
 
-if (!questions.length) return <div className="text-center text-7xl text-white min-h-screen pt-64">Loading...</div>
+if (!questions.length) return <div className="text-center text-5xl text-white min-h-screen pt-64">Loading...</div>
 
   return (
     <div className="flex min-h-screen flex-col items-center p-24 text-center">

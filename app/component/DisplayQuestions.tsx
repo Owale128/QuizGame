@@ -19,7 +19,7 @@ const DisplayQuestions = ({question, onAnswer, timer}: IQuestions) => {
 
   return (
     <div className="border-2 border-black rounded-2xl w-screen-90 p-3 bg-gradient-to-br from-[#72a4cd] to-[#514899] my-auto mr-2.5 md:w-4/5 md:my-auto lg:w-2/6 animate-fadeIn">
-        <div>Timer: {timer}s</div>
+        <div className="text-xl md:text-lg">Timer: {timer}s</div>
       
       <h2 className="font-bold mt-4 text-lg">{question.question}</h2>
       <ul className="mt-7">
