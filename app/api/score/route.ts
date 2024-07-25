@@ -1,6 +1,6 @@
 import { getScore } from "@/app/lib/getScore";
-import { postScore } from "@/app/lib/postscore";
-import { NextRequest, NextResponse } from "next/server";
+import { postScore } from "@/app/lib/postScore";
+import { NextRequest} from "next/server";
 
 export const POST = async (req: NextRequest) => {
     return postScore(req)
