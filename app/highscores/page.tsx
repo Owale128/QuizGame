@@ -38,7 +38,7 @@ import React, { useEffect, useState } from 'react'
           ))}
         </tbody>
       </table>
-      <button className="border-2 border-black rounded p-1 bg-black text-white hover:bg-white hover:text-black transition ease-in duration-150 mt-3" onClick={handleBackBtn}>Back</button>
+      <button className="border-2 border-black rounded p-1 bg-black text-white  active:bg-white active:text-black md:hover:bg-white md:hover:text-black transition ease-in duration-150 mt-3" onClick={handleBackBtn}>Back</button>
     </div>
   )
 }
