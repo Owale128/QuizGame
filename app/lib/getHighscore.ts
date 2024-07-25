@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { supabase } from "./supabaseClient";
 
 
-export const getHighscore = async (req: NextRequest) => {
+export const getHighscore = async () => {
 
     try {
         const { data: highScore, error} = await supabase
@@ -10,7 +10,6 @@ export const getHighscore = async (req: NextRequest) => {
         .select('score, username')
         .order('score', {ascending: false})
         .limit(5)
-        .single();
 
         if(error) {
             throw error;
