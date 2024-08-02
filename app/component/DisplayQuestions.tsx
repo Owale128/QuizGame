@@ -13,8 +13,13 @@ const DisplayQuestions = ({question, onAnswer, timer}: IQuestions) => {
   const router = useRouter();
 
   const handleQuit = () => {
-    router.push('/')
-    alert('Are you sure?')
+   const isConfirmed = confirm('Are you sure?');
+
+    if(isConfirmed) {
+      router.push('/')
+    } else {
+      router.push('/quiz')
+    }
   }
 
   return (
