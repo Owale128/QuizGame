@@ -18,7 +18,13 @@ useEffect(() => {
 }, []);
 
   const handleQuitBtn = () => {
-    router.push('/')
+    const isConfirmed = confirm('Are you sure?');
+
+    if(isConfirmed) {
+      router.push('/')
+    } else {
+      router.push('/quiz')
+    }
   }
 
   const handleRetry = () => {
