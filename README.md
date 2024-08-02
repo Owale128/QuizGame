@@ -1,36 +1,10 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Quiz Game - Next.Js! 😃
 
-## Getting Started
+This quiz project allows users to participate in a quiz and see their results. Built with React and Next.js, it consists of four main parts. On the home page, the user can enter their username and be redirected to the quiz. In the quiz section, questions are presented with multiple answers, and the project tracks time and scores as the user navigates between questions. After the quiz, the result is displayed on a results page where the user can see their score and choose to either restart or quit the game. The user can also click to see the highest score, a high score page shows the top five results.
 
-First, run the development server:
+Link to the app: https://quiz-game-mu-two.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![QuizPic](https://github.com/user-attachments/assets/fddadb88-0c0c-444f-949b-1b774da6f81b)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Stack: 
+[![My Skills](https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,postgres,supabase)](https://skillicons.dev)
