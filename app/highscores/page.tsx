@@ -18,7 +18,7 @@ import React, { useEffect, useState } from 'react'
     }, [])
 
   return (
-        <div className="flex min-h-screen flex-col items-center p-20 text-center animate-fadeIn">
+        <div className="flex min-h-screen flex-col items-center p-24 text-center animate-fadeIn">
       <h1 className="font-bold text-3xl text-white mb-4 underline">Top 5 High Scores</h1>
       <table className="bg-black border">
         <thead>
