@@ -28,7 +28,7 @@ useEffect(() => {
   }
 
   const handleRetry = () => {
-    router.push('/quiz')
+    router.push('/score')
   }
 
   return (
