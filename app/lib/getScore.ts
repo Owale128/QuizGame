@@ -9,10 +9,10 @@ export const getScore = async (req: NextRequest) => {
         const username = searchParams.get('username');
 
         const { data: user, error } = await supabase
-        .from('QuizGameDB')
+        .from('QuizDB')
         .select('*')
         .eq('username', username)
-        .single();
+        .maybeSingle()
 
         if (error) {
             throw error;
@@ -28,5 +28,3 @@ export const getScore = async (req: NextRequest) => {
         return NextResponse.json({ message: 'Internal Server Error'}, { status: 500 });
     }
 };
-
-

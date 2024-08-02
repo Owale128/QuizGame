@@ -76,4 +76,3 @@ export const questions = [
         correctAnswer: 2
     },
 ]
-

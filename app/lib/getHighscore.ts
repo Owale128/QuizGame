@@ -6,9 +6,9 @@ export const getHighscore = async () => {
 
     try {
         const { data: highScore, error} = await supabase
-        .from('QuizGameDB')
+        .from('QuizDB')
         .select('score, username')
-        .order('score', {ascending: false})
+        .order('score', { ascending: false })
         .limit(5)
 
         if(error) {

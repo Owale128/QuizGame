@@ -30,7 +30,7 @@ const Quiz = () => {
     } else if (timer === 0) {
       handleNextQuestion(false)
     }
-  }, [timer, timerActive])
+  }, [])
 
 const handleAnswer = (answer: number) => {
   const isCorrect = answer === questions[currentQuestionIndex].correctAnswer;
