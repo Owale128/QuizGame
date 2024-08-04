@@ -7,4 +7,4 @@ You can visit the page at: https://quiz-game-mu-two.vercel.app/
 ![QuizPic](https://github.com/user-attachments/assets/fddadb88-0c0c-444f-949b-1b774da6f81b)
 
 # Stack: 
-[![My Skills](https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,postgres,supabase)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,postgres,supabase,vercel)](https://skillicons.dev)
