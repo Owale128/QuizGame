@@ -14,7 +14,7 @@ const UserForm = ({username, setUserName, handleSubmit}: IUserForm) => {
     value={username}
     onChange={(e) => setUserName(e.target.value)}
     placeholder="Enter your username"
-    className="text-center text-lg border-2 border-black rounded block my-5 placeholder:text-black"
+    className="text-center text-lg border-2 border-black rounded block my-5 p-1 placeholder:text-black"
     />
 <button className="border-2 border-black rounded p-1 items-center bg-black text-white active:bg-white active:text-black md:hover:bg-white md:hover:text-black cursor-pointer transition ease-in duration-300">Start Quiz</button>
 </form>
