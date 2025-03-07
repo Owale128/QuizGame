@@ -1,4 +1,5 @@
 'use client'
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
@@ -11,10 +12,16 @@ import React, { useEffect, useState } from 'react'
     }
 
     useEffect(() => {
-        fetch('/api/highscores')
-        .then((res) => res.json())
-        .then((data) => setHighScores(data))
-        .catch((error) => console.error('Error fetching high scores:', error ))
+      try {
+        const fetchHighscores = async () => {
+          const response = await axios.get('/api/highscores')
+          setHighScores(response.data)
+        }
+        fetchHighscores()
+      } catch (error) {
+        console.error('Error fetching highscores:', error)
+      }
+        
     }, [])
 
   return (

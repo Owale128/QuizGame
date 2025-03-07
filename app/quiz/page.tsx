@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { IQuestion } from '../model/Question'
 import { useRouter } from 'next/navigation'
 import DisplayQuestions from '../component/DisplayQuestions'
+import axios from 'axios'
 
 const Quiz = () => {
   const [questions, setQuestions] = useState<IQuestion[]>([])
@@ -14,9 +15,15 @@ const Quiz = () => {
   const router = useRouter();
 
   useEffect(() => {
-    fetch('/api/questions')
-    .then((res) => res.json())
-    .then((data) => setQuestions(data))
+    try {
+      const fetchScore = async () => {
+       const response = await axios.get('/api/questions')
+       setQuestions(response.data)
+      }
+      fetchScore()
+    } catch (error) {
+      console.error('Error fetch questions:', error)
+    }
   }, [])
 
   useEffect(() => {

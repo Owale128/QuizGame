@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import axios from 'axios'
 
 
 const Score = () => {
@@ -11,10 +12,16 @@ const [score, setScore] = useState({
 const router = useRouter()
 
 useEffect(() => {
-  const username = localStorage.getItem('username');
-  fetch(`/api/score?username=${username}`)
-  .then((res) => res.json())
-  .then((data) => setScore(data));
+  try {
+    const fetchScore = async () => {
+      const username = localStorage.getItem('username');
+      const response = await axios.get(`/api/score?username=${username}`)
+      setScore(response.data)
+    }
+    fetchScore() 
+  } catch (error) {
+    console.error('Error fetching score:', error)
+  }
 }, []);
 
   const handleQuitBtn = () => {
