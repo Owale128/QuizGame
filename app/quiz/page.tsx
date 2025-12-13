@@ -1,9 +1,9 @@
 'use client'
 import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { IQuestion } from '../model/Question'
 import { getTimerStyle } from '../lib/gameStyles'
-import React, { useEffect, useState } from 'react'
 import DisplayQuestions from '../component/DisplayQuestions'
 import { shuffleArray, shuffleQuestionOptions } from '../lib/shuffle'
 
