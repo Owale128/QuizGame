@@ -1,47 +1,38 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "./supabaseClient";
-
+import { getDatabase } from "./mongoClient";
 
 export const postScore = async (req: NextRequest) => {
-
     try {
-        
+
         const { username, score } = await req.json();
-        
-        const { data: existingUser, error: fetchError } = await supabase
-            .from('QuizDB')  
-            .select('*')
-            .eq('username', username)
-            .maybeSingle()
 
-        if (fetchError) {
-            throw fetchError;
+        if (!username || typeof score !== 'number') {
+            return NextResponse.json(
+                { message: 'Invalid input: username and score required' },
+                { status: 400 }
+            );
         }
 
-        if (existingUser) {
-            
-            const { error: updateError } = await supabase
-                .from('QuizDB')  
-                .update({ score })
-                .eq('username', username);
+        const db = await getDatabase();
+        const collection = db.collection('scores');
 
-            if (updateError) {
-                throw updateError;
-            }
-        } else {
-            
-            const { error: insertError } = await supabase
-                .from('QuizDB')  
-                .insert([{ username, score }]);
-
-            if (insertError) {
-                throw insertError;
-            }
-        }
+        await collection.updateOne(
+            { username },
+            { $set: { username, score } },
+            { upsert: true }
+        );
 
         return NextResponse.json({ message: 'Score saved' }, { status: 200 });
     } catch (error) {
         console.error('Error saving score:', error);
+
+        if ((error as any).code === 11000) {
+            return NextResponse.json(
+                { message: 'Username already exists' },
+                { status: 409 }
+            );
+        }
+
         return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
     }
 };
