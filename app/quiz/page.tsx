@@ -6,6 +6,7 @@ import { IQuestion } from '../model/Question'
 import { getTimerStyle } from '../lib/gameStyles'
 import DisplayQuestions from '../component/DisplayQuestions'
 import { shuffleArray, shuffleQuestionOptions } from '../lib/shuffle'
+import ConfirmModal from '../component/ConfirmModal'
 
 const Quiz = () => {
   const [questions, setQuestions] = useState<IQuestion[]>([])
@@ -13,6 +14,7 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(30)
   const [timerActive, setTimerActive] = useState(true)
+  const [showQuitModal, setShowQuitModal] = useState(false)
 
   const router = useRouter();
 
@@ -59,13 +61,16 @@ const handleAnswer = (answer: number) => {
   }
 
   const handleQuit = () => {
-   const isConfirmed = confirm('Are you sure?');
+    setShowQuitModal(true)
+  }
 
-    if(isConfirmed) {
-      router.push('/')
-    } else {
-      router.push('/quiz')
-    }
+  const handleConfirmQuit = () => {
+    setShowQuitModal(false)
+    router.push('/')
+  }
+
+  const handleCancelQuit = () => {
+    setShowQuitModal(false)
   }
 
   const handleNextQuestion = (isCorrect: boolean) => {
@@ -101,17 +106,29 @@ if (!questions.length) return (
   )
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-6 overflow-y-auto">
-      <DisplayQuestions
-        question={questions[currentQuestionIndex]}
-        onAnswer={handleAnswer}
-        timer={timer}
-        questionNumber={currentQuestionIndex + 1}
-        totalQuestions={questions.length}
-        handleQuit={handleQuit}
-        getTimerStyle={() => getTimerStyle(timer)}
+    <>
+      <div className="flex min-h-screen flex-col items-center justify-center py-6 overflow-y-auto">
+        <DisplayQuestions
+          question={questions[currentQuestionIndex]}
+          onAnswer={handleAnswer}
+          timer={timer}
+          questionNumber={currentQuestionIndex + 1}
+          totalQuestions={questions.length}
+          handleQuit={handleQuit}
+          getTimerStyle={() => getTimerStyle(timer)}
+        />
+      </div>
+
+      <ConfirmModal
+        isOpen={showQuitModal}
+        title="Quit Quiz?"
+        message="Are you sure you want to quit? Your progress will be lost."
+        onConfirm={handleConfirmQuit}
+        onCancel={handleCancelQuit}
+        confirmText="Yes, Quit"
+        cancelText="No, Continue"
       />
-    </div>
+    </>
   )
 }
 
