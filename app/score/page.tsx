@@ -47,6 +47,8 @@ useEffect(() => {
     router.push('/highscores')
   }
 
+  const result = getMedalAndMessage(score.score);
+
   return (
     <div className="flex items-center justify-center h-screen p-2">
       <div className="relative flex flex-col items-center justify-center w-full max-w-md">
@@ -59,10 +61,10 @@ useEffect(() => {
 
           <DisplayScore
             score={score}
+            result={result}
             handleQuitBtn={handleQuitBtn}
             handleRetry={handleRetry}
             handleShowHighScores={handleShowHighScores}
-            getMedalAndMessage={getMedalAndMessage}
           />
         </div>
       </div>
