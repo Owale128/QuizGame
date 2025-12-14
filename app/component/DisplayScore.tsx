@@ -6,9 +6,6 @@ const DisplayScore = ({ score, result, handleQuitBtn, handleRetry, handleShowHig
     <div className="w-full animate-slideInUp">
 
       <div className="text-center mb-6">
-        <div className={'text-5xl md:text-7xl mb-3 animate-trophy-bounce inline-block'}>
-          {result.medal}
-        </div>
         <div className={`text-2xl font-bold ${result.color} tracking-wider drop-shadow-lg`}>
           {result.message}
         </div>
