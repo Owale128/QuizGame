@@ -1,19 +1,17 @@
 "use client";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
 import { useRouter } from "next/navigation";
 import { IQuestion } from "../model/IQuestion";
 import { getTimerStyle } from "../lib/gameStyles";
 import DisplayQuestions from "../component/DisplayQuestions";
 import { shuffleArray, shuffleQuestionOptions } from "../lib/shuffle";
 import ConfirmModal from "../component/ConfirmModal";
+import { quizReducer } from "../reducer/quizReducer";
+import { initialQuizState } from "../model/IQuizState";
 
 const Quiz = () => {
-  const [questions, setQuestions] = useState<IQuestion[]>([]);
-  const [currentQuestionIndex, setCurrentQuestionsIndex] = useState(0);
-  const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(30);
-  const [timerActive, setTimerActive] = useState(true);
+  const [state, dispatch] = useReducer(quizReducer, initialQuizState);
   const [showQuitModal, setShowQuitModal] = useState(false);
 
   const router = useRouter();
@@ -34,7 +32,7 @@ const Quiz = () => {
           shuffleQuestionOptions
         );
         const shuffledQuestions = shuffleArray(questionsWithShuffledOptions);
-        setQuestions(shuffledQuestions);
+        dispatch({ type: "SET_QUESTIONS", payload: shuffledQuestions });
       };
       fetchScore();
     } catch (error) {
@@ -43,21 +41,21 @@ const Quiz = () => {
   }, []);
 
   useEffect(() => {
-    if (timerActive && timer > 0) {
+    if (state.timerActive && state.timer > 0) {
       const interval = setInterval(() => {
-        setTimer((prev) => prev - 1);
+        dispatch({ type: "TIMER_TICK" });
       }, 1000);
 
       return () => clearInterval(interval);
-    } else if (timer === 0 && timerActive) {
-      setTimerActive(false);
+    } else if (state.timer === 0 && state.timerActive) {
+      dispatch({ type: "STOP_TIMER" });
       handleNextQuestion(false);
     }
-  }, [timer, timerActive]);
+  }, [state.timer, state.timerActive]);
 
   const handleAnswer = (answer: number) => {
-    setTimerActive(false);
-    const isCorrect = answer === questions[currentQuestionIndex].correctAnswer;
+    dispatch({ type: "STOP_TIMER" });
+    const isCorrect = answer === state.questions[state.currentQuestionIndex].correctAnswer;
     handleNextQuestion(isCorrect);
   };
 
@@ -75,27 +73,24 @@ const Quiz = () => {
   };
 
   const handleNextQuestion = (isCorrect: boolean) => {
-    const newScore = isCorrect ? score + 1 : score;
-    const nextQuestionIndex = currentQuestionIndex + 1;
-    if (nextQuestionIndex < questions.length) {
-      setCurrentQuestionsIndex(nextQuestionIndex);
-      setScore(newScore);
-      setTimer(30);
-      setTimerActive(true);
+    const nextQuestionIndex = state.currentQuestionIndex + 1;
+    if (nextQuestionIndex < state.questions.length) {
+      dispatch({ type: "NEXT_QUESTION", payload: { isCorrect } });
     } else {
       const username = localStorage.getItem("username");
+      const finalScore = isCorrect ? state.score + 1 : state.score;
 
       fetch("/api/score", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, score: newScore }),
+        body: JSON.stringify({ username, score: finalScore }),
       }).then(() => {
         router.push("/score");
       });
     }
   };
 
-  if (!questions.length)
+  if (!state.questions.length)
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
@@ -111,13 +106,13 @@ const Quiz = () => {
     <>
       <div className="flex min-h-screen flex-col items-center justify-center py-6 overflow-y-auto">
         <DisplayQuestions
-          question={questions[currentQuestionIndex]}
+          question={state.questions[state.currentQuestionIndex]}
           onAnswer={handleAnswer}
-          timer={timer}
-          questionNumber={currentQuestionIndex + 1}
-          totalQuestions={questions.length}
+          timer={state.timer}
+          questionNumber={state.currentQuestionIndex + 1}
+          totalQuestions={state.questions.length}
           handleQuit={handleQuit}
-          getTimerStyle={() => getTimerStyle(timer)}
+          getTimerStyle={() => getTimerStyle(state.timer)}
         />
       </div>
 
