@@ -1,4 +1,4 @@
-import { IQuestion } from "./Question";
+import { IQuestion } from "./IQuestion";
 
 export interface IQuestions {
   question: IQuestion;
