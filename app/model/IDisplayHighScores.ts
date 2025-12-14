@@ -1,7 +1,7 @@
-import { RankStyle } from "./RankStyle";
+import { RankStyle } from "./IRankStyle";
 
 export interface IDisplayHighScores {
-    highScores: {username: string, score: number}[];
-    handleBackBtn: () => void;
-    getRankStyle: (index: number) => RankStyle;
+  highScores: { username: string; score: number }[];
+  handleBackBtn: () => void;
+  getRankStyle: (index: number) => RankStyle;
 }
