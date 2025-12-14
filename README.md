@@ -7,4 +7,4 @@ Link: https://quiz-game-mu-two.vercel.app/
 <img width="1919" height="962" alt="Skärmavbild 2025-12-14 kl  10 56 52" src="https://github.com/user-attachments/assets/2ec4e98d-f7b5-4e55-a02a-258ebc7fe84e" />
 
 # Stack: 
-[![My Skills](https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,mongodb,vercel)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=nextjs,ts,tailwind,mongodb,vercel)](https://skillicons.dev)
