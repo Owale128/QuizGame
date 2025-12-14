@@ -1,9 +1,9 @@
-import { MedalResult } from "./MedalResult";
+import { IMedalResult } from "./IMedalResult";
 
 export interface IDisplayScore {
-    score: {username: string, score: number};
-    result: MedalResult;
-    handleQuitBtn: () => void;
-    handleRetry: () => void;
-    handleShowHighScores: () => void;
+  score: { username: string; score: number };
+  result: IMedalResult;
+  handleQuitBtn: () => void;
+  handleRetry: () => void;
+  handleShowHighScores: () => void;
 }
