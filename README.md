@@ -4,7 +4,7 @@ This quiz project allows users to participate in a quiz and see their results. B
 
 Link: https://quiz-game-mu-two.vercel.app/
 
-![QuizPic](https://github.com/user-attachments/assets/fddadb88-0c0c-444f-949b-1b774da6f81b)
+<img width="1919" height="962" alt="Skärmavbild 2025-12-14 kl  10 56 52" src="https://github.com/user-attachments/assets/2ec4e98d-f7b5-4e55-a02a-258ebc7fe84e" />
 
 # Stack: 
 [![My Skills](https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,postgres,supabase,vercel)](https://skillicons.dev)
